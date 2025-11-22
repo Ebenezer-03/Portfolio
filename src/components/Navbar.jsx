@@ -1,23 +1,50 @@
-import { navLinks } from '#constants'
 import React from 'react'
-
+import { navLinks, navIcons } from '@/constants'
 
 const Navbar = () => {
-  return (<nav className="relative z-50">
-    <div>
-        <img src = "/images/logo.svg" alt = "Logo"/>
-        <p className='font-bold'>Ebenezer's Portfolio</p>
+    // Get current time
+    const getCurrentTime = () => {
+        const now = new Date()
+        const options = {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: true
+        }
+        return now.toLocaleString('en-US', options)
+    }
 
-        <ul>
-            {navLinks.map((item)=>(
-                <li key={item.id}>
-                    <p>{item.name}</p>
-                </li>
-            ))}
-        </ul>
-    </div>
-  </nav>
-  )
+    return (
+        <nav className="relative z-50">
+            <div className="nav-container">
+                <div className="nav-left">
+                    <img src="/images/logo.svg" alt="Logo" className="nav-logo" />
+                    <p className='font-bold nav-title'>Ebenezer's Portfolio</p>
+
+                    <ul className="nav-links">
+                        {navLinks.map((item) => (
+                            <li key={item.id}>
+                                <p>{item.name}</p>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                <div className="nav-right">
+                    <ul className="nav-icons">
+                        {navIcons.map((item) => (
+                            <li key={item.id}>
+                                <img src={item.img} alt={`icon-${item.id}`} />
+                            </li>
+                        ))}
+                    </ul>
+                    <p className="nav-time">{getCurrentTime()}</p>
+                </div>
+            </div>
+        </nav>
+    )
 }
 
 export default Navbar
