@@ -284,7 +284,7 @@ body {
   }
 
   #resume {
-    @apply w-fit h-fit absolute top-16 left-7/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply w-[40rem] h-[40rem] absolute top-16 left-1/2 -translate-x-1/2 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden flex flex-col;
 
     #window-header {
       h2 {

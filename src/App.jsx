@@ -4,6 +4,7 @@ import Welcome from './components/Welcome'
 import Dock from './components/Dock'
 import Terminal from './windows'
 import Safari from './windows/Safari'
+import Resume from './windows/Resume'
 
 const App = () => {
     console.log('App component rendering');
@@ -16,6 +17,7 @@ const App = () => {
 
             <Terminal />
             <Safari />
+            <Resume />
         </main>
     )
 }
