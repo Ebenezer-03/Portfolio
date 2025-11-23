@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import Welcome from './components/Welcome'
 import Dock from './components/Dock'
 import Terminal from './windows'
+import Safari from './windows/Safari'
 
 const App = () => {
     console.log('App component rendering');
@@ -14,6 +15,7 @@ const App = () => {
             <Dock />
 
             <Terminal />
+            <Safari />
         </main>
     )
 }

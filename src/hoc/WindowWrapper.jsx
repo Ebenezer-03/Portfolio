@@ -105,7 +105,7 @@ const WindowWrapper = (Component, windowKey) => {
         style={{ zIndex, position: 'absolute' }}
         // Initial position: slightly left, not centered. 
         // top-20 left-20 is a good starting point for "professional" look
-        className={`absolute top-24 left-24 shadow-2xl rounded-xl overflow-hidden bg-[#1c1c1e] border border-[#3a3a3c] ${isMinimized ? 'pointer-events-none' : ''}`}
+        className={`absolute top-24 left-24 shadow-2xl rounded-xl overflow-hidden border border-black/10 ${isMinimized ? 'pointer-events-none' : ''}`}
         onMouseDown={() => focusWindow(windowKey)}
       >
         <Component {...props} />
