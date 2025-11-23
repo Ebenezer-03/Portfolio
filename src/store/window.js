@@ -38,7 +38,34 @@ const useWindowStore = create((set) => ({
         if (newWindows[windowKey]) {
             newWindows[windowKey] = {
                 ...newWindows[windowKey],
-                zIndex: state.nextZIndex
+                zIndex: state.nextZIndex,
+                isMinimized: false // Ensure it's not minimized when focused
+            };
+            return { windows: newWindows, nextZIndex: state.nextZIndex + 1 };
+        }
+        return state;
+    }),
+
+    minimizeWindow: (windowKey) => set((state) => {
+        const newWindows = { ...state.windows };
+        if (newWindows[windowKey]) {
+            newWindows[windowKey] = {
+                ...newWindows[windowKey],
+                isMinimized: true,
+                isOpen: true // Keep it "open" but minimized
+            };
+            return { windows: newWindows };
+        }
+        return state;
+    }),
+
+    maximizeWindow: (windowKey) => set((state) => {
+        const newWindows = { ...state.windows };
+        if (newWindows[windowKey]) {
+            newWindows[windowKey] = {
+                ...newWindows[windowKey],
+                isMaximized: !newWindows[windowKey].isMaximized, // Toggle maximize
+                isMinimized: false
             };
             return { windows: newWindows, nextZIndex: state.nextZIndex + 1 };
         }
