@@ -8,6 +8,8 @@ import Resume from './windows/Resume'
 import Finder from './windows/Finder'
 import TxtFile from './windows/TxtFile'
 import ImgFile from './windows/ImgFile'
+import Contact from './windows/Contact'
+import Home from './components/Home'
 
 const App = () => {
     console.log('App component rendering');
@@ -24,6 +26,8 @@ const App = () => {
             <Finder />
             <TxtFile />
             <ImgFile />
+            <Contact />
+            <Home />
         </main>
     )
 }
