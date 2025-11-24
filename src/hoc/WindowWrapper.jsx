@@ -15,6 +15,7 @@ const WindowWrapper = (Component, windowKey) => {
 
     const { isOpen, zIndex, isMinimized, isMaximized } = windowState;
     const ref = useRef(null);
+    const draggableInstance = useRef(null);
 
     // Handle Open/Close Animation
     useGSAP(() => {
@@ -31,32 +32,58 @@ const WindowWrapper = (Component, windowKey) => {
     // Handle Draggable
     useGSAP(() => {
       const el = ref.current;
-      if (!el) return;
+      if (!el || !isOpen || isMinimized) return;
 
-      // Kill previous instance if exists to prevent duplicates
-      const existingDraggable = Draggable.get(el);
-      if (existingDraggable) existingDraggable.kill();
+      // Clean up any existing draggable instance
+      if (draggableInstance.current) {
+        console.log(`[${windowKey}] Killing existing draggable instance`);
+        draggableInstance.current.kill();
+        draggableInstance.current = null;
+      }
 
-      if (isMaximized) return; // Disable drag when maximized
+      if (isMaximized) {
+        console.log(`[${windowKey}] Skipping draggable - window is maximized`);
+        return; // Disable drag when maximized
+      }
 
-      // Find the drag-handle within this specific window
+      // Find the drag-handle within THIS specific window element only
       const dragHandle = el.querySelector(".drag-handle");
-      if (!dragHandle) return;
+      if (!dragHandle) {
+        console.warn(`[${windowKey}] No drag-handle found in window`);
+        return;
+      }
 
-      const [instance] = Draggable.create(el, {
+      console.log(`[${windowKey}] Creating draggable instance`, { el, dragHandle });
+
+      // Create draggable with the specific element, not a selector
+      const instances = Draggable.create(el, {
         type: "x,y",
-        bounds: "main", // Constrain to main container
+        bounds: "main",
         inertia: true,
-        trigger: dragHandle, // Use the specific drag-handle element, not a selector
-        onPress: () => focusWindow(windowKey),
+        trigger: dragHandle, // Use the actual DOM element, not a selector string
+        onPress: () => {
+          console.log(`[${windowKey}] Drag started`);
+          focusWindow(windowKey);
+        },
+        onDrag: function () {
+          console.log(`[${windowKey}] Dragging at x:${this.x}, y:${this.y}`);
+        },
         allowContextMenu: true,
-        dragClickables: true, // Allow clicking buttons inside
+        dragClickables: true,
       });
 
+      // Store the instance in the ref
+      draggableInstance.current = instances[0];
+      console.log(`[${windowKey}] Draggable instance created and stored`);
+
       return () => {
-        if (instance) instance.kill();
+        console.log(`[${windowKey}] Cleanup: killing draggable instance`);
+        if (draggableInstance.current) {
+          draggableInstance.current.kill();
+          draggableInstance.current = null;
+        }
       };
-    }, [isMaximized, isOpen]); // Re-create when maximized state changes
+    }, [isMaximized, isOpen, isMinimized, windowKey]); // Re-create when these change
 
     // Handle Minimized State
     useGSAP(() => {

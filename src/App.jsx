@@ -6,6 +6,8 @@ import Terminal from './windows'
 import Safari from './windows/Safari'
 import Resume from './windows/Resume'
 import Finder from './windows/Finder'
+import TxtFile from './windows/TxtFile'
+import ImgFile from './windows/ImgFile'
 
 const App = () => {
     console.log('App component rendering');
@@ -20,6 +22,8 @@ const App = () => {
             <Safari />
             <Resume />
             <Finder />
+            <TxtFile />
+            <ImgFile />
         </main>
     )
 }
