@@ -39,11 +39,15 @@ const WindowWrapper = (Component, windowKey) => {
 
       if (isMaximized) return; // Disable drag when maximized
 
+      // Find the drag-handle within this specific window
+      const dragHandle = el.querySelector(".drag-handle");
+      if (!dragHandle) return;
+
       const [instance] = Draggable.create(el, {
         type: "x,y",
         bounds: "main", // Constrain to main container
         inertia: true,
-        trigger: ".drag-handle", // Only drag when clicking the header
+        trigger: dragHandle, // Use the specific drag-handle element, not a selector
         onPress: () => focusWindow(windowKey),
         allowContextMenu: true,
         dragClickables: true, // Allow clicking buttons inside
