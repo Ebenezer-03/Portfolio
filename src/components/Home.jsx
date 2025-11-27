@@ -4,7 +4,7 @@ import { useGSAP } from "@gsap/react";
 import { Draggable } from "gsap/Draggable";
 import gsap from "gsap";
 import useWindowStore from "#store/window.js";
-import useLocationStore from "#store/location.js";
+import useLocationStore from "#store/Location.js";
 
 // Register GSAP plugins
 gsap.registerPlugin(Draggable);
