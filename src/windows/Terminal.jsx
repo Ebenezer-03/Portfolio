@@ -17,7 +17,7 @@ const Terminal = () => {
                 {/* Command Line */}
                 <div className="mb-6 font-medium">
                     <p>
-                        <span className="text-white font-bold mr-2">@adrian %</span>
+                        <span className="text-white font-bold mr-2">@Ebenezer %</span>
                         <span className="text-[#4af626]">show tech stack</span>
                     </p>
                 </div>

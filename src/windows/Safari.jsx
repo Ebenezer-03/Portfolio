@@ -43,13 +43,13 @@ const Safari = () => {
             {/* Content Area */}
             <div className="flex-1 overflow-y-auto bg-white custom-scrollbar">
                 <div className="max-w-2xl mx-auto p-8">
-                    <h2 className="text-3xl font-bold text-[#ff2d55] mb-10 text-center tracking-tight">My Developer Blog</h2>
+                    <h2 className="text-3xl font-bold text-[#ff2d55] mb-10 text-center tracking-tight">Work Experience and Certifications</h2>
 
                     <div className="grid gap-6">
                         {blogPosts.map(({ id, image, title, date, link }) => (
                             <div key={id} className="group flex items-start gap-6 p-4 rounded-xl hover:bg-gray-50 transition-all duration-300 border border-transparent hover:border-gray-100 cursor-default">
                                 {/* Image */}
-                                <div className="w-32 h-20 shrink-0 rounded-lg overflow-hidden bg-gray-100 shadow-sm border border-gray-100 relative mt-1">
+                                <div className="w-32 h-20 shrink-2 rounded-lg overflow-hidden bg-gray-100 shadow-sm border border-gray-100 relative mt-1">
                                     <img src={image} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                                 </div>
 
@@ -65,7 +65,7 @@ const Safari = () => {
                                         rel="noopener noreferrer"
                                         className="inline-flex items-center gap-1 text-xs font-medium text-blue-500 hover:text-blue-600 hover:gap-1.5 transition-all"
                                     >
-                                        Read article
+                                        Show Credentials
                                         <MoveRight className="w-3 h-3" />
                                     </a>
                                 </div>

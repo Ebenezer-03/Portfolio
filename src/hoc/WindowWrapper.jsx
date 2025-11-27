@@ -134,9 +134,8 @@ const WindowWrapper = (Component, windowKey) => {
         id={windowKey}
         ref={ref}
         style={{ zIndex, position: 'absolute' }}
-        // Initial position: slightly left, not centered. 
-        // top-20 left-20 is a good starting point for "professional" look
-        className={`absolute top-24 left-24 shadow-2xl rounded-xl overflow-hidden border border-black/10 ${isMinimized ? 'pointer-events-none' : ''}`}
+        // Initial position: Contact on right (centered in right area), others on left
+        className={`absolute ${windowKey === 'contact' ? 'top-32 left-228' : 'top-24 left-24'} shadow-2xl rounded-xl overflow-hidden border border-black/10 ${isMinimized ? 'pointer-events-none' : ''}`}
         onMouseDown={() => focusWindow(windowKey)}
       >
         <Component {...props} />
